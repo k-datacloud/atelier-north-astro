@@ -1,0 +1,101 @@
+@use "sass:map";
+
+$breakpoints: (
+  "sm": 480px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1440px,
+  "xxl": 1920px,
+);
+
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  }
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+a,
+dl,
+dt,
+dd,
+table,
+tr,
+th,
+td,
+span,
+address {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  line-height: 1;
+  outline: none;
+  box-sizing: border-box;
+  color: inherit;
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  background-color: unset;
+  border: none;
+  outline: none;
+  color: inherit;
+  font: inherit;
+}
+
+div,
+header,
+footer,
+section,
+article,
+figure,
+picture {
+  box-sizing: border-box;
+  margin: 0;
+  display: block;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+//Color
+$bg: #fef0d5;
+$text: #0048ae;
+$dark: #222222;
+
+body {
+  font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background-color: $bg;
+  color: $text;
+}
+
+.text-base {
+  font-size: 14px;
+  line-height: 1.2;
+}
