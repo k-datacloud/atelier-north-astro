@@ -1,1 +1,90 @@
-<footer>footer</footer>
+---
+import { Image } from "astro:assets";
+import arrow from "../assets/arrow.svg";
+---
+
+<footer class="footer">
+  <div class="l-wrapper footer__wrapper">
+    <div class="footer__top">
+      <div class="footer__contact">
+        <div class="footer__intro">
+          <p class="text-base">[CONTACT]</p>
+          <p class="text-base">
+            Thank you for taking the time to explore our studio. No matter how
+            small your project or inquiry may be, we'd love to hear from you.
+            Let's start with a conversation.
+          </p>
+        </div>
+        <a href="" class="text-base footer__link">
+          <span class="text-wrapper">
+            <span class="footer__link-label footer__link-label--default"
+              >info@ateliernorth.com</span
+            >
+            <span class="footer__link-label footer__link-label--clone"
+              >info@ateliernorth.com</span
+            >
+          </span>
+          <span class="divider"></span>
+          <span class="text-wrapper">
+            <Image
+              src={arrow}
+              alt="Arrow"
+              class="footer__link-arrow footer__link-arrow--default"
+            />
+            <Image
+              src={arrow}
+              alt="Arrow"
+              class="footer__link-arrow footer__link-arrow--clone"
+            />
+          </span>
+        </a>
+        <div class="footer__address">
+          <p class="text-base">
+            2F,3-12-8 Aoyama Minato-ku,<br />
+            Tokyo 107-0062 Japan
+          </p>
+          <a href="" class="text-base"
+            >Open Google Map
+            <span>
+              <Image src={arrow} alt="Arrow" />
+            </span>
+          </a>
+        </div>
+      </div>
+      <h2 class="anton footer__title">
+        <span class="text-wrapper">GET IN TOUCH</span>
+      </h2>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__meta">
+        <div class="footer__meta-item">
+          <p class="text-sm">
+            This is a Fictional studio site created for a <a>Codrops tutorial</a
+            >.
+          </p>
+          <p class="text-sm">
+            All names, projects, and information are fictional.
+          </p>
+        </div>
+        <div class="footer__meta-item">
+          <a class="text-sm">Cookie Policy</a>
+          <a class="text-sm">Privacy Policy</a>
+        </div>
+        <div class="footer__meta-item">
+          <p class="text-sm">
+            WEBSITE BY <a
+              href="https://kaiseisadatoki-v4.vercel.app"
+              target="_blank">KAISEI SADATOKI</a>
+          </p>
+        </div>
+        <div class="footer__meta-item">
+          <p class="text-sm">
+            <span>BACK TO TOP</span>
+            <span>[↑]</span>
+          </p>
+        </div>
+      </div>
+      <div class="footer__end"></div>
+    </div>
+  </div>
+</footer>
