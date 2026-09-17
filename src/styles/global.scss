@@ -95,7 +95,58 @@ body {
   color: $text;
 }
 
+.l-wrapper {
+  padding-left: clamp(16px, calc(7.762px + 2.197vw), 64px);
+  padding-right: clamp(16px, calc(7.762px + 2.197vw), 64px);
+}
+
 .text-base {
-  font-size: 14px;
+  font-size: clamp(0.75rem, 0.706rem + 0.1878vw, 0.875rem);
   line-height: 1.2;
+}
+
+.text-sm {
+  font-size: clamp(0.625rem, 0.581rem + 0.1878vw, 0.75rem);
+  line-height: 1.2;
+}
+
+.text-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+}
+
+.anton {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+}
+
+.menu-button {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+  background-color: $text;
+  color: $bg;
+  padding: 12px 48px;
+
+  @include respond-to("lg") {
+    top: 40px;
+    right: 40px;
+  }
+
+  &__button {
+    display: flex;
+  }
+
+  &__label {
+    &--clone {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(100%);
+    }
+  }
 }

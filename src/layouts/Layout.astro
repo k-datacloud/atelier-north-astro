@@ -10,10 +10,22 @@ import "../styles/global.scss";
     <Head />
   </head>
   <body>
-    <div></div>
+    <div class="menu-button">
+      <button class="menu-button__button" type="button">
+        <span class="text-wrapper">
+          <span class="menu-button__label text-base">MENU[+]</span>
+          <span class="menu-button__label menu-button__label--clone text-base"
+            >MENU[+]</span
+          >
+        </span>
+      </button>
+    </div>
+    <div class="menu"></div>
     <main>
       <slot />
     </main>
     <Footer />
-  </body>
+  </body><script type="module">
+    import "../scripts/global.js";
+  </script>
 </html>

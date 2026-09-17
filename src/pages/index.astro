@@ -1,5 +1,275 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import "../styles/top.scss";
+import { Image } from "astro:assets";
+import arrow from "../assets/arrow.svg";
+import project01 from "../assets/project01.jpg";
+import project02 from "../assets/project02.jpg";
+import project03 from "../assets/project03.jpg";
+import project04 from "../assets/project04.jpg";
+import project05 from "../assets/project05.jpg";
 ---
 
-<Layout />
+<Layout>
+  <section class="fv">
+    <div class="l-wrapper fv__wrapper">
+      <div class="fv__top">
+        <h1 class="fv__title anton">
+          <span class="text-wrapper">ATELIER NORTH</span>
+        </h1>
+        <div class="fv__vision">
+          <p class="text-base fv__vision-label">[VISION]</p>
+          <p class="text-base fv__vision-desc">
+            Creating thoughtful architecture and interior spaces for everyday
+            living. We believe beautiful spaces should feel calm, welcoming, and
+            naturally connected to the people who live in them.
+          </p>
+        </div>
+        <a href="" class="text-base fv__link">
+          <span class="text-wrapper">
+            <span class="fv__link-label fv__link-label--default"
+              >info@ateliernorth.com</span
+            >
+            <span class="fv__link-label fv__link-label--clone"
+              >info@ateliernorth.com</span
+            >
+          </span>
+          <span class="divider"></span>
+          <span class="text-wrapper">
+            <Image
+              src={arrow}
+              alt="Arrow"
+              class="fv__link-arrow fv__link-arrow--default"
+            />
+            <Image
+              src={arrow}
+              alt="Arrow"
+              class="fv__link-arrow fv__link-arrow--clone"
+            />
+          </span>
+        </a>
+      </div>
+      <div class="fv__bottom">
+        <div class="fv__labels">
+          <p class="text-sm">
+            <span>SCROLL</span>
+            <span>[↓]</span>
+          </p>
+          <p class="text-sm">
+            <span>INDEX</span>
+            <span>[+]</span>
+          </p>
+          <p class="text-sm">
+            <span>SCROLL</span>
+            <span>[↓]</span>
+          </p>
+        </div>
+        <ul class="fv__lists">
+          <li class="fv__lists-item">
+            <p class="text-sm">[ABOUT]</p>
+            <p class="text-base">WHO WE ARE</p>
+          </li>
+          <li class="fv__lists-item">
+            <p class="text-sm">[PROJECTS]</p>
+            <p class="text-base">SELECTED WORKS</p>
+          </li>
+          <li class="fv__lists-item">
+            <p class="text-sm">[MEMBERS]</p>
+            <p class="text-base">OUR TEAM</p>
+          </li>
+          <li class="fv__lists-item">
+            <p class="text-sm">[CONTACT]</p>
+            <p class="text-base">GET IN TOUCH</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-top-about">
+    <div class="l-wrapper p-top-about__wrapper">
+      <h2 class="p-top-about__title anton">
+        <span class="text-wrapper p-top-about__title-wrapper">
+          <span>WHO</span>
+          <span>WE</span>
+          <span>ARE</span>
+        </span>
+      </h2>
+      <div class="p-top-about__lead">
+        <div class="p-top-about__intro">
+          <p class="text-base">[ABOUT]</p>
+          <p class="text-base">
+            We are a small architecture studio based in Tokyo. We work across
+            architecture, interiors, and design consulting, creating thoughtful
+            spaces for modern living.
+          </p>
+        </div>
+        <ul class="p-top-about__floating">
+          <li class="p-top-about__floating-item">
+            <p class="text-sm">WHAT WE DO ???</p>
+          </li>
+          <li class="p-top-about__floating-item">
+            <p class="text-sm">WHAT WE DO ???</p>
+          </li>
+          <li class="p-top-about__floating-item">
+            <p class="text-sm">WHAT WE DO ???</p>
+          </li>
+        </ul>
+      </div>
+      <div class="p-top-about__info">
+        <div class="p-top-about__info-item">
+          <p class="text-sm">We're</p>
+          <p class="text-sm">based</p>
+          <p class="text-sm">in</p>
+          <p class="anton">JAPAN</p>
+        </div>
+        <div class="p-top-about__info-item">
+          <p class="text-sm">We're</p>
+          <p class="text-sm">founded</p>
+          <p class="text-sm">in</p>
+          <p class="anton">2026</p>
+        </div>
+      </div>
+      <ul class="p-top-about__services">
+        <li class="p-top-about__services-item">
+          <p class="text-base">
+            Designing residential and commercial spaces with a timeless,
+            contemporary approach.
+          </p>
+          <p class="anton">ARCHITECTURE</p>
+        </li>
+        <li class="p-top-about__services-item">
+          <p class="text-base">
+            Creating warm, functional interiors that enhance everyday living.
+          </p>
+          <p class="anton">INTERIORS</p>
+        </li>
+        <li class="p-top-about__services-item">
+          <p class="text-base">
+            Helping clients shape clear ideas through thoughtful design
+            direction.
+          </p>
+          <p class="anton">COUNSULTING</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="p-top-projects">
+    <div class="l-wrapper p-top-projects__wrapper">
+      <div class="p-top-projects__lead">
+        <div class="p-top-projects__intro">
+          <p class="text-base">[PROJECTS]</p>
+          <p class="text-base">
+            A selection of projects we've had the pleasure of working on. From
+            residential homes to commercial and cultural spaces, each project
+            reflects our commitment to thoughtful design.
+          </p>
+        </div>
+        <h2 class="anton p-top-projects__title">
+          <span class="text-wrapper">
+            <span>SELECTED</span><br />
+            <span>WORKS</span>
+          </span>
+        </h2>
+      </div>
+      <div class="p-top-projects__lists">
+        <ProjectCard
+          number="01"
+          title="Sora Museum"
+          location="Aoyama, Tokyo"
+          image={project01}
+        />
+        <ProjectCard
+          number="02"
+          title="Forest Residence"
+          location="Okutama, Tokyo"
+          image={project02}
+        />
+        <ProjectCard
+          number="03"
+          title="Linear House"
+          location="Kiyosumi, Tokyo"
+          image={project03}
+        />
+        <ProjectCard
+          number="04"
+          title="Glass Pavilion"
+          location="Daikanyama, Tokyo"
+          image={project04}
+        />
+        <ProjectCard
+          number="05"
+          title="Frame Stadio"
+          location="Minato, Tokyo"
+          image={project05}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="p-top-members">
+    <div class="l-wrapper p-top-members__wrapper">
+      <div class="p-top-members__intro p-top-members__intro--top">
+        <p class="text-base">[MEMBERS]</p>
+        <p class="text-base">
+          Meet the people behind our studio. A small team of architects and
+          designers dedicated to creating thoughtful spaces for everyday living.
+        </p>
+      </div>
+      <h2 class="anton p-top-members__title">
+        <span class="text-wrapper">
+          <span>OUR TEAM</span>
+        </span>
+      </h2>
+      <ul class="p-top-members__lists">
+        <li class="p-top-members__lists-item">
+          <p class="text-sm">Founder</p>
+          <p class="anton">Haruto Sato</p>
+          <p class="text-base">
+            Leads the studio with a focus on residential architecture.
+          </p>
+          <p class="text-base">/001</p>
+        </li>
+        <li class="p-top-members__lists-item">
+          <p class="text-sm">Lead Architect</p>
+          <p class="anton">Mei Takahashi</p>
+          <p class="text-base">Develops concepts and architectural planning.</p>
+          <p class="text-base">/002</p>
+        </li>
+        <li class="p-top-members__lists-item">
+          <p class="text-sm">Interior Designer</p>
+          <p class="anton">Yuna Ito</p>
+          <p class="text-base">
+            Creates warm and functional interior experiences.
+          </p>
+          <p class="text-base">/003</p>
+        </li>
+        <li class="p-top-members__lists-item">
+          <p class="text-sm">Project Architect</p>
+          <p class="anton">Ren Nakamura</p>
+          <p class="text-base">
+            Oversees technical design and project coordination.
+          </p>
+          <p class="text-base">/004</p>
+        </li>
+        <li class="p-top-members__lists-item">
+          <p class="text-sm">Visual Designer</p>
+          <p class="anton">Aoi Kuroda</p>
+          <p class="text-base">
+            Shapes the studio's visual identity and presentations.
+          </p>
+          <p class="text-base">/005</p>
+        </li>
+      </ul>
+      <div class="p-top-members__intro p-top-members__intro--bottom">
+        <p class="text-base">[MEMBERS]</p>
+        <p class="text-base">
+          Meet the people behind our studio. A small team of architects and
+          designers dedicated to creating thoughtful spaces for everyday living.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
