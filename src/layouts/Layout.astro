@@ -20,7 +20,29 @@ import "../styles/global.scss";
         </span>
       </button>
     </div>
-    <div class="menu"></div>
+    <div class="menu">
+      <ul class="menu__list">
+        <p class="text-base">[INDEX]</p>
+        <li class="menu__list-item">
+          <a class="menu__list-item-link text-base" href="/about">ABOUT</a>
+        </li>
+        <li class="menu__list-item">
+          <a class="menu__list-item-link text-base" href="/projects">PROJECTS</a
+          >
+        </li>
+        <li class="menu__list-item">
+          <a class="menu__list-item-link text-base" href="/members">MEMBERS</a>
+        </li>
+        <li class="menu__list-item">
+          <a class="menu__list-item-link text-base" href="/contact">CONTACT</a>
+        </li>
+      </ul>
+      <div class="divider"></div>
+      <div class="menu__contact">
+        <p class="text-base">[EMAIL]</p>
+        <a class="text-base" href="">info@ateliernorth.com</a>
+      </div>
+    </div>
     <main>
       <slot />
     </main>

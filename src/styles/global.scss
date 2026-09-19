@@ -151,6 +151,42 @@ body {
   }
 }
 
+.menu {
+  background-color: $text;
+  color: $bg;
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  z-index: 999;
+  padding: 48px 24px 32px;
+
+  @include respond-to("lg") {
+    top: 120px;
+    right: 40px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    p {
+      margin-bottom: 12px;
+    }
+  }
+
+  .divider {
+    border: 1px solid rgba($bg, 1);
+    margin: 24px 0;
+  }
+
+  &__contact {
+    p {
+      margin-bottom: 12px;
+    }
+  }
+}
+
 .footer {
   width: 100%;
   overflow: hidden;
@@ -274,7 +310,15 @@ body {
     gap: 16px;
 
     a {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: underline;
+
+      span {
+        display: flex;
+      }
     }
   }
 
@@ -312,6 +356,12 @@ body {
       }
       &:nth-child(4) {
         grid-column: 12 / 13;
+
+        p {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
 
         @include respond-to("lg") {
           justify-self: end;

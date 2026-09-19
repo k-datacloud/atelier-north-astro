@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import arrow from "../assets/arrow.svg";
+import arrowblue from "../assets/arrowblue.svg";
 ---
 
 <footer class="footer">
@@ -44,9 +45,9 @@ import arrow from "../assets/arrow.svg";
             Tokyo 107-0062 Japan
           </p>
           <a href="" class="text-base"
-            >Open Google Map
+            ><span>Open in Google Maps</span>
             <span>
-              <Image src={arrow} alt="Arrow" />
+              <Image src={arrowblue} alt="Arrow" />
             </span>
           </a>
         </div>
@@ -74,7 +75,8 @@ import arrow from "../assets/arrow.svg";
           <p class="text-sm">
             WEBSITE BY <a
               href="https://kaiseisadatoki-v4.vercel.app"
-              target="_blank">KAISEI SADATOKI</a>
+              target="_blank">KAISEI SADATOKI</a
+            >
           </p>
         </div>
         <div class="footer__meta-item">
