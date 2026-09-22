@@ -106,15 +106,23 @@ import project05 from "../assets/project05.jpg";
           </p>
         </div>
         <ul class="p-top-about__floating">
-          <li class="p-top-about__floating-item">
-            <p class="text-sm">WHAT WE DO ???</p>
-          </li>
-          <li class="p-top-about__floating-item">
-            <p class="text-sm">WHAT WE DO ???</p>
-          </li>
-          <li class="p-top-about__floating-item">
-            <p class="text-sm">WHAT WE DO ???</p>
-          </li>
+          <div class="p-top-about__floating-wrapper js-floating-wrapper">
+            <li class="p-top-about__floating-item js-floating">
+              <div class="p-top-about__floating-inner js-floating-inner">
+                <p class="text-sm">WHAT WE DO ???</p>
+              </div>
+            </li>
+            <li class="p-top-about__floating-item js-floating">
+              <div class="p-top-about__floating-inner js-floating-inner">
+                <p class="text-sm">WHAT WE DO ???</p>
+              </div>
+            </li>
+            <li class="p-top-about__floating-item js-floating">
+              <div class="p-top-about__floating-inner js-floating-inner">
+                <p class="text-sm">WHAT WE DO ???</p>
+              </div>
+            </li>
+          </div>
         </ul>
       </div>
       <div class="p-top-about__info">
@@ -210,6 +218,7 @@ import project05 from "../assets/project05.jpg";
   </section>
 
   <section class="p-top-members">
+    <div class="p-top-members__pixel-transition js-pixel-transition"></div>
     <div class="l-wrapper p-top-members__wrapper">
       <div class="p-top-members__sticky">
         <div class="p-top-members__intro p-top-members__intro--top">
@@ -221,9 +230,7 @@ import project05 from "../assets/project05.jpg";
           </p>
         </div>
         <h2 class="anton p-top-members__title">
-          <span class="text-wrapper">
-            <span>OUR TEAM</span>
-          </span>
+          <span class="text-wrapper"> OUR TEAM </span>
         </h2>
         <div class="p-top-members__intro p-top-members__intro--bottom">
           <p class="text-base">[MEMBERS]</p>
@@ -287,5 +294,6 @@ import project05 from "../assets/project05.jpg";
         </li>
       </ul>
     </div>
+    <div class="p-top-members__pixel-transition js-pixel-leave"></div>
   </section>
 </Layout>

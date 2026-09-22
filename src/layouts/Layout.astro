@@ -10,17 +10,32 @@ import "../styles/global.scss";
     <Head />
   </head>
   <body>
-    <div class="menu-button">
+    <div class="menu-button js-menu-button">
       <button class="menu-button__button" type="button">
         <span class="text-wrapper">
-          <span class="menu-button__label text-base">MENU[+]</span>
-          <span class="menu-button__label menu-button__label--clone text-base"
-            >MENU[+]</span
-          >
+          <span class="menu-button__label text-base">
+            <span>MENU</span>
+            <span>[+]</span>
+          </span>
+          <span class="menu-button__label menu-button__label--clone text-base">
+            <span>MENU</span>
+            <span>[+]</span>
+          </span>
         </span>
       </button>
     </div>
-    <div class="menu">
+    <svg width="0" height="0">
+      <filter id="rough">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.8"
+          numOctaves="1"
+          result="noise"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="40"
+        ></feDisplacementMap>
+      </filter>
+    </svg>
+    <div class="menu js-menu">
       <ul class="menu__list">
         <p class="text-base">[INDEX]</p>
         <li class="menu__list-item">

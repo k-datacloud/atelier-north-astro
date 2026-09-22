@@ -1,22 +1,4 @@
-@use "sass:map";
-
-$breakpoints: (
-  "sm": 480px,
-  "md": 768px,
-  "lg": 1024px,
-  "xl": 1440px,
-  "xxl": 1920px,
-);
-
-@mixin respond-to($breakpoint) {
-  @if map.has-key($breakpoints, $breakpoint) {
-    $breakpoint-value: map.get($breakpoints, $breakpoint);
-
-    @media (min-width: $breakpoint-value) {
-      @content;
-    }
-  }
-}
+@use "variable" as *;
 
 body,
 h1,
@@ -81,11 +63,6 @@ button {
   outline: none;
 }
 
-//Color
-$bg: #fef0d5;
-$text: #0048ae;
-$dark: #222222;
-
 body {
   font-family: "Kode Mono", monospace;
   font-optical-sizing: auto;
@@ -130,7 +107,6 @@ body {
   z-index: 999;
   background-color: $text;
   color: $bg;
-  padding: 12px 48px;
 
   @include respond-to("lg") {
     top: 40px;
@@ -139,9 +115,17 @@ body {
 
   &__button {
     display: flex;
+    padding: 12px 48px;
+
+    .text-wrapper {
+      display: flex;
+    }
   }
 
   &__label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     &--clone {
       position: absolute;
       top: 0;
@@ -370,10 +354,22 @@ body {
     }
   }
 
-  &__end {
+  &__pixel-transition {
     width: 100vw;
     margin-inline: calc(50% - 50vw);
-    height: 30svh;
+    height: 20vw;
     background-color: $text;
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(25, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+
+  &__pixel-cell {
+    margin: 0 -1px -1px 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-clip: border-box;
   }
 }

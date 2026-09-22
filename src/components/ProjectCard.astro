@@ -11,8 +11,9 @@ const { number, title, location, image } = Astro.props;
 
 <article class="p-top-projects__card">
   <p class="text-base">({number})</p>
-  <div class="p-top-projects__card-img">
-    <img src={image.src} alt="" />
+  <div class="p-top-projects__card-img js-pixel">
+    <canvas class="js-pixel-canvas"></canvas>
+    <img src={image.src} alt="" class="js-source-image" />
   </div>
   <div class="p-top-projects__card-info">
     <p class="text-base">{title}</p>

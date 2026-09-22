@@ -1,4 +1,4 @@
-@use "global" as *;
+@use "variable" as *;
 
 .fv {
   width: 100%;
@@ -207,6 +207,7 @@
     @include respond-to("lg") {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
+      overflow: hidden;
     }
   }
 
@@ -237,22 +238,44 @@
   }
 
   &__floating {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
     @include respond-to("lg") {
-      padding-left: 40px;
       grid-column: 5 / 13;
-      flex-direction: row;
+    }
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      @include respond-to("lg") {
+        padding-left: 40px;
+        flex-direction: row;
+      }
     }
 
     &-item {
-      border: 1px dashed rgba($text, 0.5);
-      position: relative;
       @include respond-to("lg") {
-        height: 240px;
+        aspect-ratio: 271 / 200;
         flex: 1;
       }
+      &:nth-child(1) {
+        position: relative;
+        z-index: 3;
+      }
+
+      &:nth-child(2) {
+        position: relative;
+        z-index: 2;
+      }
+
+      &:nth-child(3) {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    &-inner {
+      border: 1px dashed rgba($text, 0.5);
+      position: relative;
+      height: 100%;
 
       p {
         position: absolute;
@@ -422,11 +445,14 @@
     }
 
     &-img {
-      img {
+      overflow: hidden;
+      .js-pixel-canvas {
         width: 100%;
         height: 100%;
-        object-fit: cover;
         display: block;
+      }
+      img {
+        display: none;
       }
     }
 
@@ -439,11 +465,31 @@
 }
 
 .p-top-members {
-  background-color: $dark;
-  color: $bg;
-  position: relative;
+  &__pixel-transition {
+    display: grid;
+    gap: 0;
+    overflow: hidden;
+
+    @include respond-to("lg") {
+      height: 24.1vw;
+      grid-template-columns: repeat(25, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+    }
+  }
+
+  &__pixel-cell {
+    background-color: $bg;
+    margin: 0 -1px -1px 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-clip: border-box;
+  }
 
   &__wrapper {
+    background-color: $dark;
+    color: $bg;
+    position: relative;
     @include respond-to("lg") {
       height: 400vh;
     }
@@ -471,11 +517,18 @@
   }
 
   &__title {
-    font-size: clamp(3rem, 1.301rem + 7.2492vw, 10rem);
+    white-space: nowrap;
+    font-size: 240px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    .text-wrapper {
+      span {
+        display: inline-block;
+      }
+    }
   }
 
   &__sticky {
@@ -484,6 +537,7 @@
       height: 100vh;
       position: sticky;
       top: 0;
+      left: 0;
     }
   }
 
