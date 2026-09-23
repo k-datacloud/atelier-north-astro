@@ -37,7 +37,7 @@ function floatingBox() {
   });
 }
 
-floatingBox();
+// floatingBox();
 
 // function floatingBoxAnimation() {
 //   const group = document.querySelector(".p-top-about__floating-wrapper");
@@ -289,7 +289,7 @@ function memberTitle() {
     scrollTrigger: {
       trigger: target,
       start: "top top",
-      markers: true,
+      markers: false,
     },
   });
 }
