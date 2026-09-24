@@ -1,11 +1,14 @@
 import gsap from "gsap";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
+let lenis;
 function initLenis() {
-  const lenis = new Lenis({
+  lenis = new Lenis({
     duration: 1.2,
     easing: (t) => 1 - Math.pow(1 - t, 3),
   });
@@ -19,6 +22,108 @@ function initLenis() {
 }
 
 initLenis();
+
+function displayHeader() {
+  const header = document.querySelector(".js-header");
+  const items = header.querySelectorAll(".header__item");
+
+  let isHidden = false;
+
+  const getHideY = () => {
+    const top = parseFloat(getComputedStyle(header).top);
+    return -(header.offsetHeight + top + 8); // 少し余裕を持たせる
+  };
+
+  ScrollTrigger.create({
+    start: 0,
+    end: "max",
+    onUpdate: (self) => {
+      if (self.direction === 1 && !isHidden) {
+        isHidden = true;
+
+        gsap.to(header, {
+          y: getHideY(),
+          duration: 0.45,
+          ease: "power3.inOut",
+        });
+      }
+
+      if (self.direction === -1 && isHidden) {
+        isHidden = false;
+
+        gsap.set(items, {
+          y: -50,
+        });
+
+        const tl = gsap.timeline();
+
+        tl.to(header, {
+          y: 0,
+          duration: 0.45,
+          ease: "power3.out",
+        }).to(
+          items,
+          {
+            y: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power3.out",
+          },
+          "<",
+        );
+      }
+    },
+  });
+}
+
+displayHeader();
+
+function headerHover() {
+  const target = document.querySelectorAll(".header__item-link");
+  const headerItemDefault = document.querySelectorAll(
+    ".header__item-label--default",
+  );
+  const headerItemClone = document.querySelectorAll(
+    ".header__item-label--clone",
+  );
+
+  gsap.set(headerItemClone, {
+    rotate: 28,
+    yPercent: 100,
+    transformOrigin: "left center",
+  });
+
+  target.forEach((el, i) => {
+    el.addEventListener("mouseenter", () => {
+      gsap.to(headerItemClone[i], {
+        rotate: 0,
+        yPercent: 0,
+        duration: 0.6,
+        ease: "power4.out",
+      });
+      gsap.to(headerItemDefault[i], {
+        scale: 0,
+        duration: 0.6,
+        ease: "power4.out",
+      });
+    });
+    el.addEventListener("mouseleave", () => {
+      gsap.to(headerItemClone[i], {
+        rotate: 28,
+        yPercent: 100,
+        duration: 0.6,
+        ease: "power4.out",
+      });
+      gsap.to(headerItemDefault[i], {
+        scale: 1,
+        duration: 0.6,
+        ease: "power4.out",
+      });
+    });
+  });
+}
+
+headerHover();
 
 function floatingBox() {
   document.querySelectorAll(".js-floating-inner").forEach((el) => {
@@ -37,96 +142,165 @@ function floatingBox() {
   });
 }
 
-// floatingBox();
+floatingBox();
 
-// function floatingBoxAnimation() {
-//   const group = document.querySelector(".p-top-about__floating-wrapper");
-//   const cards = document.querySelectorAll(".js-floating");
-//   const tl = gsap.timeline({
-//     scrollTrigger: {
-//       trigger: group,
-//       start: "top 40%",
-//       end: "+=600",
-//       scrub: true,
-//       markers: true,
-//     },
-//   });
-//   const cardWidth = cards[0].offsetWidth;
-//   const overlap = cardWidth * 0.45; // 55% 重ねる
-
-//   tl.to(
-//     cards[0],
-//     {
-//       x: overlap,
-//       rotation: -45,
-//       duration: 0.9,
-//       scale: 0.8,
-//     },
-//     0,
-//   );
-
-//   tl.to(
-//     cards[1],
-//     {
-//       scale: 0.8,
-//       duration: 0.9,
-//     },
-//     0,
-//   );
-
-//   tl.to(
-//     cards[2],
-//     {
-//       x: -overlap,
-//       rotation: 45,
-//       duration: 0.9,
-//       scale: 0.8,
-//     },
-//     0,
-//   );
-
-//   // 0.9〜1.0：束ごと落ちる
-//   tl.to(
-//     group,
-//     {
-//       y: 120,
-//       opacity: 0,
-//       duration: 1,
-//     },
-//     0,
-//   );
-// }
-
-// floatingBoxAnimation();
+let isMenuOpen = false;
+let openTl;
+let closeTl;
 
 function initMenu() {
   const menuButton = document.querySelector(".js-menu-button");
-  const menu = document.querySelector(".js-menu");
-  const labels = document.querySelectorAll(".menu-button__label");
+  const menuButtonWrapper = document.querySelectorAll(".menu-button__button");
+  const menuoverlay = document.querySelector(".js-menu");
+  const menu = document.querySelector(".js-menu div");
+  const open = document.querySelectorAll(".menu-button__label--open");
+  const close = document.querySelectorAll(".menu-button__label--close");
+  const menuItems = menu.querySelectorAll(".text-wrapper span");
+
+  gsap.set(menuoverlay, {
+    opacity: 0,
+    pointerEvents: "none",
+  });
   gsap.set(menu, {
-    clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+    opacity: 0,
+    rotate: -28,
+    transformOrigin: "left top",
+  });
+  gsap.set(open, {
+    yPercent: 0,
+  });
+  gsap.set(close, {
+    yPercent: 100,
+  });
+  gsap.set(menuButtonWrapper, {
+    backgroundColor: "transparent",
+  });
+  gsap.set(menuItems, {
+    display: "inline-block",
+    yPercent: 100,
   });
 
-  let isOpen = false;
+  openTl = gsap.timeline({ paused: true });
+  closeTl = gsap.timeline({ paused: true });
+
+  openTl
+    .to(menuoverlay, {
+      opacity: 1,
+      pointerEvents: "all",
+      duration: 1,
+      ease: "power4.out",
+    })
+    .to(
+      menu,
+      {
+        opacity: 1,
+        rotate: 0,
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    )
+    .to(
+      open,
+      {
+        yPercent: -100,
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    )
+    .to(
+      close,
+      {
+        yPercent: 0,
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    )
+    .to(
+      menuButtonWrapper,
+      {
+        backgroundColor: "#0048AE",
+        color: "#FEF0D5",
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    )
+    .to(
+      menuItems,
+      {
+        yPercent: 0,
+        duration: 1,
+        ease: "power4.out",
+        stagger: 0.1,
+      },
+      0,
+    );
+
+  closeTl
+    .to(
+      open,
+      {
+        yPercent: 0,
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    )
+    .to(
+      menuButtonWrapper,
+      {
+        backgroundColor: "transparent",
+        color: "#0048AE",
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    )
+    .to(
+      close,
+      {
+        yPercent: 100,
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    )
+    .to(
+      menu,
+      {
+        opacity: 0,
+        rotate: -28,
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    )
+    .to(
+      menuoverlay,
+      {
+        opacity: 0,
+        pointerEvents: "none",
+        duration: 1,
+        ease: "power4.out",
+      },
+      0,
+    );
 
   menuButton.addEventListener("click", () => {
-    if (!isOpen) {
-      // Open
-      gsap.to(menu, {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 1,
-        ease: "power4.out",
-      });
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      lenis.stop();
+      openTl.restart();
     } else {
-      // Close
-      gsap.to(menu, {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-        duration: 1,
-        ease: "power4.out",
+      closeTl.restart();
+      closeTl.eventCallback("onComplete", () => {
+        lenis.start();
+        closeTl.eventCallback("onComplete", null);
       });
     }
-
-    isOpen = !isOpen;
   });
 }
 
@@ -426,3 +600,50 @@ function footerPixelTransition() {
 }
 
 footerPixelTransition();
+
+function smoothScroll() {
+  const target = document.querySelectorAll(".js-smooth-scroll");
+
+  target.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const href = el.getAttribute("href");
+
+      if (isMenuOpen) {
+        isMenuOpen = false;
+
+        lenis.start();
+        closeTl.restart();
+
+        gsap.to(window, {
+          scrollTo: href,
+          duration: 2,
+          ease: "power2.inOut",
+        });
+      } else {
+        gsap.to(window, {
+          scrollTo: href,
+          duration: 2,
+          ease: "power2.inOut",
+        });
+      }
+    });
+  });
+}
+
+smoothScroll();
+
+function backTop() {
+  const backTop = document.querySelector(".js-back-to-top");
+  backTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    gsap.to(window, {
+      scrollTo: 0,
+      duration: 2,
+      ease: "power2.inOut",
+    });
+  });
+}
+
+backTop();

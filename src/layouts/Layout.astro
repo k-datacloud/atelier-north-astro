@@ -1,5 +1,6 @@
 ---
 import Head from "../components/Head.astro";
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.scss";
 ---
@@ -10,43 +11,61 @@ import "../styles/global.scss";
     <Head />
   </head>
   <body>
-    <div class="menu-button js-menu-button">
-      <button class="menu-button__button" type="button">
-        <span class="text-wrapper">
-          <span class="menu-button__label text-base">
-            <span>MENU</span>
-            <span>[+]</span>
-          </span>
-          <span class="menu-button__label menu-button__label--clone text-base">
-            <span>MENU</span>
-            <span>[+]</span>
-          </span>
-        </span>
-      </button>
-    </div>
     <div class="menu js-menu">
-      <ul class="menu__list">
-        <p class="text-base">[INDEX]</p>
-        <li class="menu__list-item">
-          <a class="menu__list-item-link text-base" href="/about">ABOUT</a>
-        </li>
-        <li class="menu__list-item">
-          <a class="menu__list-item-link text-base" href="/projects">PROJECTS</a
-          >
-        </li>
-        <li class="menu__list-item">
-          <a class="menu__list-item-link text-base" href="/members">MEMBERS</a>
-        </li>
-        <li class="menu__list-item">
-          <a class="menu__list-item-link text-base" href="/contact">CONTACT</a>
-        </li>
-      </ul>
-      <div class="divider"></div>
-      <div class="menu__contact">
-        <p class="text-base">[EMAIL]</p>
-        <a class="text-base" href="">info@ateliernorth.com</a>
+      <div class="menu__wrapper">
+        <ul class="menu__list">
+          <p class="anton">
+            <span class="text-wrapper">
+              <span>[INDEX]</span>
+            </span>
+          </p>
+          <li class="menu__list-item">
+            <a
+              class="menu__list-item-link anton js-smooth-scroll"
+              href="#about"
+            >
+              <span class="text-wrapper">
+                <span>ABOUT</span>
+              </span>
+            </a>
+          </li>
+          <li class="menu__list-item">
+            <a
+              class="menu__list-item-link anton js-smooth-scroll"
+              href="#projects"
+            >
+              <span class="text-wrapper">
+                <span>PROJECTS</span>
+              </span>
+            </a>
+          </li>
+          <li class="menu__list-item">
+            <a
+              class="menu__list-item-link anton js-smooth-scroll"
+              href="#members"
+            >
+              <span class="text-wrapper">
+                <span>MEMBERS</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div class="divider"></div>
+        <div class="menu__contact">
+          <p class="anton">
+            <span class="text-wrapper">
+              <span>[EMAIL]</span>
+            </span>
+          </p>
+          <a class="anton" href="">
+            <span class="text-wrapper">
+              <span>info@ateliernorth.com</span>
+            </span>
+          </a>
+        </div>
       </div>
     </div>
+    <Header />
     <main>
       <slot />
     </main>
