@@ -205,7 +205,7 @@ body {
 
   &__list {
     display: flex;
-    gap: 24px;
+    gap: 16px;
   }
 
   &__item {
@@ -411,6 +411,12 @@ body {
 
         a {
           text-decoration: underline;
+          text-decoration-thickness: 1px;
+          transition: opacity 0.3s ease;
+
+          &:hover {
+            opacity: 0.5;
+          }
         }
       }
       &:nth-child(2) {
@@ -423,8 +429,16 @@ body {
         grid-column: 2 / 3;
 
         a {
+          position: relative;
           text-decoration: underline;
+          text-decoration-thickness: 1px;
+          transition: opacity 0.3s ease;
+
+          &:hover {
+            opacity: 0.5;
+          }
         }
+
         @include respond-to("lg") {
           grid-column: 9 / 11;
         }
