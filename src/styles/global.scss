@@ -109,15 +109,9 @@ body {
 }
 
 .menu-button {
-  // position: fixed;
-  // top: clamp(24px, calc(21.254px + 0.732vw), 40px);
-  // right: clamp(16px, calc(7.762px + 2.197vw), 64px);
-  // z-index: 999;
-
   @include respond-to("lg") {
     display: none;
   }
-
   &__button {
     display: flex;
     padding: 8px 16px;
@@ -149,6 +143,9 @@ body {
   z-index: 998;
   padding-left: clamp(16px, calc(7.762px + 2.197vw), 64px);
   padding-right: clamp(16px, calc(7.762px + 2.197vw), 64px);
+  opacity: 0;
+  pointer-events: none;
+
   @include respond-to("lg") {
     display: none;
   }
@@ -225,12 +222,13 @@ body {
       }
 
       &--clone {
-        transform-origin: left top;
         background-color: $text;
         color: $bg;
         position: absolute;
         top: 0;
         left: 0;
+        transform: translateY(100%);
+        transform-origin: left top;
       }
     }
   }

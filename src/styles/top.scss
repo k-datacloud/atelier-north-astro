@@ -620,7 +620,7 @@
     height: 600vh;
 
     @include respond-to("lg") {
-      height: 500vh;
+      height: 600vh;
     }
   }
 
@@ -689,8 +689,10 @@
     row-gap: 120px;
     position: relative;
     z-index: 2;
+    margin-top: 160px;
     @include respond-to("lg") {
-      row-gap: 300px;
+      margin-top: 360px;
+      row-gap: 400px;
     }
 
     &-item {
@@ -722,7 +724,7 @@
         @include respond-to("lg") {
           grid-column: 9 / 12;
           grid-row: 1 / 2;
-          transform: translateY(300px);
+          transform: translateY(400px);
         }
       }
 
@@ -741,7 +743,7 @@
         @include respond-to("lg") {
           grid-column: 8 / 11;
           grid-row: 2 / 3;
-          transform: translateY(300px);
+          transform: translateY(400px);
         }
       }
 
@@ -760,7 +762,7 @@
         @include respond-to("lg") {
           grid-column: 7 / 10;
           grid-row: 3 / 4;
-          transform: translateY(300px);
+          transform: translateY(400px);
         }
       }
     }

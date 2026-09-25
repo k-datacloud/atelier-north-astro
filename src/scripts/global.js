@@ -89,7 +89,7 @@ function headerHover() {
 
   gsap.set(headerItemClone, {
     rotate: 28,
-    yPercent: 100,
+    y: "100%",
     transformOrigin: "left center",
   });
 
@@ -97,7 +97,7 @@ function headerHover() {
     el.addEventListener("mouseenter", () => {
       gsap.to(headerItemClone[i], {
         rotate: 0,
-        yPercent: 0,
+        y: "0%",
         duration: 0.6,
         ease: "power4.out",
       });
@@ -110,7 +110,7 @@ function headerHover() {
     el.addEventListener("mouseleave", () => {
       gsap.to(headerItemClone[i], {
         rotate: 28,
-        yPercent: 100,
+        y: "100%",
         duration: 0.6,
         ease: "power4.out",
       });
@@ -428,7 +428,7 @@ function pixelTransition() {
       scrollTrigger: {
         trigger: wrapper,
         start: "top bottom",
-        end: "top 30%",
+        end: "top 20%",
         scrub: true,
       },
     },
@@ -527,7 +527,7 @@ function pixelLeaveTransition() {
       scrollTrigger: {
         trigger: wrapper,
         start: "top bottom",
-        end: "top 30%",
+        end: "top 20%",
         scrub: true,
       },
     },
@@ -618,14 +618,14 @@ function smoothScroll() {
 
         gsap.to(window, {
           scrollTo: href,
-          duration: 2,
-          ease: "power2.inOut",
+          duration: 1,
+          ease: "power2.out",
         });
       } else {
         gsap.to(window, {
           scrollTo: href,
-          duration: 2,
-          ease: "power2.inOut",
+          duration: 1,
+          ease: "power2.out",
         });
       }
     });
