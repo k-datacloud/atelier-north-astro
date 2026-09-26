@@ -125,6 +125,65 @@ function headerHover() {
 
 headerHover();
 
+function fvTitle() {
+  const target = document.querySelectorAll(".fv__title .text-wrapper span");
+  gsap.set(target[1], {
+    y: "100%",
+  });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".p-top-fv__title",
+      start: "top 70%",
+    },
+  });
+
+  tl.to(target[1], {
+    y: "0%",
+    duration: 1.5,
+    ease: "power3.out",
+  }).to(
+    target[0],
+    {
+      y: "-100%",
+      duration: 1.5,
+      ease: "power3.out",
+    },
+    "<",
+  );
+}
+
+fvTitle();
+
+function aboutTitle() {
+  const target = document.querySelectorAll(
+    ".p-top-about__title .text-wrapper span",
+  );
+  gsap.set(target, {
+    y: "100%",
+    display: "inline-block",
+  });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".p-top-about__title",
+      start: "top bottom",
+      end: "top 20%",
+      scrub: true,
+    },
+  });
+
+  tl.to(
+    target,
+    {
+      y: "0%",
+    },
+    0.5,
+  );
+}
+
+aboutTitle();
+
 function floatingBox() {
   document.querySelectorAll(".js-floating-inner").forEach((el) => {
     gsap.fromTo(
@@ -305,6 +364,40 @@ function initMenu() {
 }
 
 initMenu();
+
+function projectTitle() {
+  const items = document.querySelectorAll(
+    ".p-top-projects__title .text-wrapper span",
+  );
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".p-top-projects__title",
+      start: "top 65%",
+    },
+  });
+
+  gsap.set([items[1], items[3]], {
+    y: "100%",
+  });
+
+  tl.to([items[1], items[3]], {
+    y: "0%",
+    duration: 1.5,
+    ease: "power3.out",
+    stagger: 0.3,
+  }).to(
+    [items[0], items[2]],
+    {
+      y: "-100%",
+      duration: 1.5,
+      stagger: 0.3,
+      ease: "power3.out",
+    },
+    "<",
+  );
+}
+
+projectTitle();
 
 function pixelateImage() {
   const items = document.querySelectorAll(".js-pixel");
@@ -535,6 +628,37 @@ function pixelLeaveTransition() {
 }
 
 pixelLeaveTransition();
+
+function footerTitle() {
+  const title = document.querySelectorAll(".footer__title .text-wrapper span");
+
+  gsap.set(title[1], {
+    y: "100%",
+  });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".footer__title",
+      start: "top 70%",
+    },
+  });
+
+  tl.to(title[1], {
+    y: "0%",
+    duration: 1.5,
+    ease: "power3.out",
+  }).to(
+    title[0],
+    {
+      y: "-100%",
+      duration: 1.5,
+      ease: "power3.out",
+    },
+    "<",
+  );
+}
+
+footerTitle();
 
 function footerPixelTransition() {
   const wrapper = document.querySelector(".js-footer-pixel");

@@ -376,6 +376,17 @@ body {
 
   &__title {
     font-size: clamp(4rem, 1.8873rem + 9.0141vw, 10rem);
+
+    .text-wrapper {
+      display: flex;
+      span {
+        &:nth-child(2) {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
   }
 
   &__bottom {

@@ -37,6 +37,18 @@
     font-style: normal;
     font-size: clamp(4rem, 2.5915rem + 6.0094vw, 8rem);
     line-height: 1;
+
+    .text-wrapper {
+      display: flex;
+
+      span {
+        &:nth-child(2) {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
   }
 
   &__vision {
@@ -495,6 +507,19 @@
   &__title {
     text-align: right;
     font-size: clamp(4rem, 1.8873rem + 9.0141vw, 10rem);
+
+    .text-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      span {
+        &:nth-child(2) {
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translateY(100%);
+        }
+      }
+    }
   }
 
   &__lists {
@@ -691,7 +716,7 @@
     z-index: 2;
     margin-top: 160px;
     @include respond-to("lg") {
-      margin-top: 360px;
+      margin-top: 420px;
       row-gap: 400px;
     }
 
