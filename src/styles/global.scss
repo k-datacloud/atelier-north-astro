@@ -379,13 +379,6 @@ body {
 
     .text-wrapper {
       display: flex;
-      span {
-        &:nth-child(2) {
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
-      }
     }
   }
 

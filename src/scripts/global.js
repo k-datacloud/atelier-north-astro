@@ -126,60 +126,54 @@ function headerHover() {
 headerHover();
 
 function fvTitle() {
-  const target = document.querySelectorAll(".fv__title .text-wrapper span");
-  gsap.set(target[1], {
-    y: "100%",
+  const target = document.querySelector(".fv__title .text-wrapper");
+  const nodes = [...target.childNodes];
+  target.textContent = "";
+  nodes.forEach((node) => {
+    if (node.nodeName === "BR") return target.appendChild(node);
+    [...node.textContent.replace(/\s/g, "")].forEach((char) => {
+      const span = document.createElement("span");
+      span.textContent = char;
+      target.appendChild(span);
+    });
+  });
+  const span = document.querySelectorAll(".fv__title .text-wrapper span");
+  gsap.set(span, {
+    scaleY: 0,
+    display: "inline-block",
+    transformOrigin: "bottom center",
   });
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".p-top-fv__title",
-      start: "top 70%",
+  gsap.to(span, {
+    scaleY: 1,
+    duration: 1.2,
+    ease: "power4.out",
+    stagger: {
+      each: 0.05,
+      from: "random",
     },
   });
-
-  tl.to(target[1], {
-    y: "0%",
-    duration: 1.5,
-    ease: "power3.out",
-  }).to(
-    target[0],
-    {
-      y: "-100%",
-      duration: 1.5,
-      ease: "power3.out",
-    },
-    "<",
-  );
 }
 
 fvTitle();
 
 function aboutTitle() {
-  const target = document.querySelectorAll(
-    ".p-top-about__title .text-wrapper span",
-  );
-  gsap.set(target, {
-    y: "100%",
-    display: "inline-block",
+  const target = document.querySelectorAll(".p-top-about__title .text-wrapper");
+
+  gsap.set(target[1], {
+    clipPath: "polygon(0% 0%, 0% 0%, 0 100%, 0 100%)",
   });
 
-  const tl = gsap.timeline({
+  gsap.to(target[1], {
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0 100%)",
+    ease: "none",
     scrollTrigger: {
       trigger: ".p-top-about__title",
-      start: "top bottom",
+      start: "top 80%",
       end: "top 20%",
-      scrub: true,
+      scrub: 1.5,
     },
   });
-
-  tl.to(
-    target,
-    {
-      y: "0%",
-    },
-    0.5,
-  );
 }
 
 aboutTitle();
@@ -630,32 +624,36 @@ function pixelLeaveTransition() {
 pixelLeaveTransition();
 
 function footerTitle() {
-  const title = document.querySelectorAll(".footer__title .text-wrapper span");
-
-  gsap.set(title[1], {
-    y: "100%",
+  const title = document.querySelector(".footer__title .text-wrapper");
+  const nodes = [...title.childNodes];
+  title.textContent = "";
+  nodes.forEach((node) => {
+    if (node.nodeName === "BR") return title.appendChild(node);
+    [...node.textContent.replace(/\s+/g, " ").trim()].forEach((char) => {
+      const span = document.createElement("span");
+      span.textContent = char === " " ? "\u00A0" : char;
+      title.appendChild(span);
+    });
+  });
+  const span = title.querySelectorAll("span");
+  gsap.set(span, {
+    scaleY: 0,
+    transformOrigin: "top center",
   });
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".footer__title",
-      start: "top 70%",
-    },
-  });
-
-  tl.to(title[1], {
-    y: "0%",
+  gsap.to(span, {
+    scaleY: 1,
     duration: 1.5,
     ease: "power3.out",
-  }).to(
-    title[0],
-    {
-      y: "-100%",
-      duration: 1.5,
-      ease: "power3.out",
+    stagger: {
+      each: 0.05,
+      from: "random",
     },
-    "<",
-  );
+    scrollTrigger: {
+      trigger: title,
+      start: "top 80%",
+    },
+  });
 }
 
 footerTitle();
