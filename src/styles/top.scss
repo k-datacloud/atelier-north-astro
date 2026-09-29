@@ -16,7 +16,11 @@
   &__top {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
+
+    @include respond-to("lg") {
+      gap: 40px;
+    }
   }
 
   &__bottom {
@@ -35,7 +39,7 @@
   &__title {
     font-weight: 400;
     font-style: normal;
-    font-size: clamp(4rem, 2.5915rem + 6.0094vw, 8rem);
+    font-size: clamp(4.5rem, 2.5634rem + 8.2629vw, 10rem);
     line-height: 1;
     display: flex;
   }
@@ -88,10 +92,6 @@
 
     .text-wrapper {
       display: flex;
-
-      &:last-child {
-        display: flex;
-      }
     }
 
     .divider {
@@ -375,27 +375,46 @@
       p {
         &:nth-child(1) {
           position: absolute;
-          top: 32px;
-          left: 24px;
+          top: 24px;
+          left: 16px;
+
+          @include respond-to("lg") {
+            top: 32px;
+            left: 24px;
+          }
         }
 
         &:nth-child(2) {
           position: absolute;
-          top: 32px;
-          right: 24px;
+          top: 24px;
+          right: 16px;
+          @include respond-to("lg") {
+            top: 32px;
+            right: 24px;
+          }
         }
 
         &:nth-child(3) {
           position: absolute;
-          bottom: 32px;
-          left: 24px;
+          bottom: 24px;
+          left: 16px;
+
+          @include respond-to("lg") {
+            bottom: 32px;
+            left: 24px;
+          }
         }
 
         &:nth-child(4) {
           position: absolute;
-          bottom: 32px;
-          right: 24px;
+          bottom: 24px;
+          right: 16px;
           font-size: clamp(2rem, 1.2958rem + 3.0047vw, 4rem);
+
+          @include respond-to("lg") {
+            bottom: 32px;
+            right: 24px;
+          }
         }
       }
 
@@ -426,7 +445,7 @@
     }
 
     &-item {
-      padding: 24px;
+      padding: 24px 16px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
