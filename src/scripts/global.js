@@ -124,15 +124,18 @@ function headerHover() {
 headerHover();
 
 function fvTitle() {
-  const target = document.querySelector(".fv__title .text-wrapper");
+  const target = document.querySelector(".fv__title .text-wrapper span");
   const nodes = [...target.childNodes];
   target.textContent = "";
   nodes.forEach((node) => {
-    if (node.nodeName === "BR") return target.appendChild(node);
+    if (node.nodeName === "BR")
+      return document
+        .querySelector(".fv__title .text-wrapper")
+        .appendChild(node);
     [...node.textContent.replace(/\s/g, "")].forEach((char) => {
       const span = document.createElement("span");
       span.textContent = char;
-      target.appendChild(span);
+      document.querySelector(".fv__title .text-wrapper").appendChild(span);
     });
   });
   const span = document.querySelectorAll(".fv__title .text-wrapper span");

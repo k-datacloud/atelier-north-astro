@@ -42,6 +42,12 @@
     font-size: clamp(4.5rem, 2.5634rem + 8.2629vw, 10rem);
     line-height: 1;
     display: flex;
+
+    .text-wrapper {
+      span {
+        transform: scaleY(0);
+      }
+    }
   }
 
   &__vision {

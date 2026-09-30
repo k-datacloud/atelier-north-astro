@@ -13,7 +13,7 @@ const { number, title, location, image } = Astro.props;
   <p class="text-sm">({number})</p>
   <div class="p-top-projects__card-img js-pixel">
     <canvas class="js-pixel-canvas"></canvas>
-    <img src={image.src} alt="" class="js-source-image" />
+    <img src={image.src} alt={title} class="js-source-image" />
   </div>
   <div class="p-top-projects__card-info">
     <p class="text-sm">{title}</p>
