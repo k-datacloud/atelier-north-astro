@@ -59,8 +59,6 @@ function displayHeader() {
 
         tl.to(header, {
           y: 0,
-          duration: 0.45,
-          ease: "power3.out",
         }).to(
           items,
           {
@@ -526,17 +524,16 @@ pixelTransition();
 
 function memberTitle() {
   const title = document.querySelector(".p-top-members__title .text-wrapper");
-  const target = document.querySelector(".p-top-members__wrapper");
-  const text = title.textContent;
+  const nodes = [...title.childNodes];
   title.textContent = "";
-  text
-    .replace(/\s/g, "")
-    .split("")
-    .forEach((char, i) => {
+  nodes.forEach((node) => {
+    if (node.nodeName === "BR") return title.appendChild(node);
+    [...node.textContent.replace(/\s+/g, " ").trim()].forEach((char) => {
       const span = document.createElement("span");
-      span.textContent = char;
+      span.textContent = char === " " ? "\u00A0" : char;
       title.appendChild(span);
     });
+  });
 
   gsap.set(title.querySelectorAll("span"), {
     yPercent: 100,
@@ -548,7 +545,7 @@ function memberTitle() {
     stagger: 0.05,
     ease: "power4.out",
     scrollTrigger: {
-      trigger: target,
+      trigger: title,
       start: "top top",
       markers: false,
     },

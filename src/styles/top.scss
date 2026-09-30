@@ -455,6 +455,7 @@
       @include respond-to("lg") {
         width: calc(33% - 16px);
         aspect-ratio: 1 / 0.95;
+        padding: 32px 24px;
       }
 
       p {
