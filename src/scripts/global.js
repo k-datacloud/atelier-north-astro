@@ -23,25 +23,29 @@ function initLenis() {
 
 initLenis();
 
+let isAutoScrolling = false; // ヘッダー側からも見える場所に置く
+
 function displayHeader() {
   const header = document.querySelector(".js-header");
   const items = header.querySelectorAll(".header__item");
-
   let isHidden = false;
+  let anim;
 
   const getHideY = () => {
     const top = parseFloat(getComputedStyle(header).top);
-    return -(header.offsetHeight + top + 8); // 少し余裕を持たせる
+    return -(header.offsetHeight + top + 8);
   };
 
   ScrollTrigger.create({
     start: 0,
     end: "max",
     onUpdate: (self) => {
+      if (isAutoScrolling) return; // ← 追加: メニュークリックによる移動中は何もしない
+
       if (self.direction === 1 && !isHidden) {
         isHidden = true;
-
-        gsap.to(header, {
+        anim?.kill();
+        anim = gsap.to(header, {
           y: getHideY(),
           duration: 0.45,
           ease: "power3.inOut",
@@ -50,25 +54,16 @@ function displayHeader() {
 
       if (self.direction === -1 && isHidden) {
         isHidden = false;
-
-        gsap.set(items, {
-          y: -50,
-        });
-
-        const tl = gsap.timeline();
-
-        tl.to(header, {
-          y: 0,
-        }).to(
-          items,
-          {
-            y: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: "power3.out",
-          },
-          "<",
-        );
+        anim?.kill();
+        gsap.set(items, { y: -50 });
+        anim = gsap
+          .timeline()
+          .to(header, { y: 0, duration: 0.45, ease: "power3.out" })
+          .to(
+            items,
+            { y: 0, duration: 0.5, stagger: 0.1, ease: "power3.out" },
+            "<",
+          );
       }
     },
   });
@@ -78,46 +73,20 @@ displayHeader();
 
 function headerHover() {
   const target = document.querySelectorAll(".header__item-link");
-  const headerItemDefault = document.querySelectorAll(
-    ".header__item-label--default",
-  );
-  const headerItemClone = document.querySelectorAll(
-    ".header__item-label--clone",
-  );
+  const defaults = document.querySelectorAll(".header__item-label--default");
+  const clones = document.querySelectorAll(".header__item-label--clone");
 
-  gsap.set(headerItemClone, {
-    rotate: 28,
-    y: "100%",
-    transformOrigin: "left center",
-  });
+  gsap.set(clones, { rotate: 28, y: "100%", transformOrigin: "left center" });
+
+  const roll = (i, on) => {
+    const opts = { duration: 0.6, ease: "power4.out", overwrite: "auto" };
+    gsap.to(clones[i], { rotate: on ? 0 : 28, y: on ? "0%" : "100%", ...opts });
+    gsap.to(defaults[i], { scale: on ? 0 : 1, ...opts });
+  };
 
   target.forEach((el, i) => {
-    el.addEventListener("mouseenter", () => {
-      gsap.to(headerItemClone[i], {
-        rotate: 0,
-        y: "0%",
-        duration: 0.6,
-        ease: "power4.out",
-      });
-      gsap.to(headerItemDefault[i], {
-        scale: 0,
-        duration: 0.6,
-        ease: "power4.out",
-      });
-    });
-    el.addEventListener("mouseleave", () => {
-      gsap.to(headerItemClone[i], {
-        rotate: 28,
-        y: "100%",
-        duration: 0.6,
-        ease: "power4.out",
-      });
-      gsap.to(headerItemDefault[i], {
-        scale: 1,
-        duration: 0.6,
-        ease: "power4.out",
-      });
-    });
+    el.addEventListener("mouseenter", () => roll(i, true));
+    el.addEventListener("mouseleave", () => roll(i, false));
   });
 }
 
@@ -729,27 +698,21 @@ function smoothScroll() {
   target.forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
-
       const href = el.getAttribute("href");
 
       if (isMenuOpen) {
         isMenuOpen = false;
-
         lenis.start();
         closeTl.restart();
-
-        gsap.to(window, {
-          scrollTo: href,
-          duration: 1,
-          ease: "power2.out",
-        });
-      } else {
-        gsap.to(window, {
-          scrollTo: href,
-          duration: 1,
-          ease: "power2.out",
-        });
       }
+
+      isAutoScrolling = true;
+      lenis.scrollTo(href, {
+        duration: 1,
+        easing: (t) => 1 - Math.pow(1 - t, 2), // power2.out と同じ
+        lock: true, // 移動中はホイール操作を受け付けない
+        onComplete: () => (isAutoScrolling = false),
+      });
     });
   });
 }
