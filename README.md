@@ -1,46 +1,42 @@
-# Astro Starter Kit: Basics
+# Building a Minimal Architecture Studio Landing Page with Astro & GSAP
 
-```sh
-npm create astro@latest -- --template basics
+_A minimal landing page for a fictional architecture studio, built with Astro and GSAP, with a scroll-driven pixel transition between sections and a canvas-based pixel reveal for the project images._
+
+![Atelier North](https://tympanus.net/codrops/wp-content/uploads/2026/10/Frame-1348.png)
+
+[Article on Codrops](https://tympanus.net/codrops/?p=123651)
+
+[Demo](https://ateliernorth.vercel.app/)
+
+## Installation
+
+Requires Node.js 22.12 or newer.
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+To build for production:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```bash
+npm run build
+npm run preview
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Credits
 
-## 🧞 Commands
+- [Astro](https://astro.build/)
+- [GSAP](https://gsap.com/) and ScrollTrigger
+- [Lenis](https://lenis.darkroom.engineering/) for smooth scrolling
+- Fonts: [Kode Mono](https://fonts.google.com/specimen/Kode+Mono) and [Anton](https://fonts.google.com/specimen/Anton) from Google Fonts
 
-All commands are run from the root of the project, from a terminal:
+## Misc
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Follow Kaisei Sadatoki: [Website](https://kaiseisadatoki-v4.vercel.app/), [Instagram](https://www.instagram.com/kaiseee_i_j/), [GitHub](https://github.com/k-datacloud)
 
-## 👀 Want to learn more?
+Follow Codrops: [X](http://www.x.com/codrops), [LinkedIn](https://www.linkedin.com/company/codrops/), [Instagram](https://www.instagram.com/codropsss/), [Facebook](https://www.facebook.com/codrops), [GitHub](https://github.com/codrops)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## License
+
+[MIT](LICENSE)
